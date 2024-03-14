@@ -1,0 +1,71 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "title": "телефон",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "title": "ноутбук",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "title": "монитор",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "title": "клавиатура",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "title": "компьютерная мышь",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "title": "телевизор",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "title": "диван",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "title": "iPhone",
+      "description": "",
+      "avatar": "",
+      "category": 2,
+      "price": 100000,
+      "created_at": "2024-03-14",
+      "updated_at": "2024-03-14"
+    }
+  }
+]
