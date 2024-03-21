@@ -119,11 +119,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'catalog/static/catalog/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     # Здесь вы можете добавить пути к вашим статическим файлам,
     # если они располагаются вне приложений
-    BASE_DIR / 'catalog/static/catalog/'
+    BASE_DIR / 'static',
 ]
 
 # Default primary key field type
