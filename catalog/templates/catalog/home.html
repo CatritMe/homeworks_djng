@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <h1 class="card-title pricing-card-title">{{object.price}} руб.</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>{{object.description}}</li>
+                        <li>{{object.description | truncatechars:100}}</li>
                     </ul>
                     <a href="{% url 'catalog:products' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Обзор</a>
                 </div>
