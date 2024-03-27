@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Новости Skystore</h1>
+</div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Добавить новость</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p> Хотите удалить новость {{object.title}}</p>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-danger">Подтвердить</button>
+                        <a href="{% url 'catalog:read_blog' object.pk %}" class="btn btn-lg btn-block btn-outline-primary">Отмена</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
