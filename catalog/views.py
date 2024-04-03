@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from pytils.translit import slugify
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -10,6 +10,7 @@ class ContactCreateView(CreateView):
     model = Buyer
     fields = ('name', 'phone', 'message',)
     success_url = reverse_lazy('catalog:home')
+
 
 class ProductListView(ListView):
     model = Product
@@ -27,6 +28,7 @@ class BlogListView(ListView):
         queryset = queryset.filter(is_published=True)
         return queryset
 
+
 class BlogCreateView(CreateView):
     model = Blog
     fields = ('title', 'text', 'avatar',)
@@ -38,6 +40,7 @@ class BlogCreateView(CreateView):
             new_blog.slug = slugify(new_blog.title)
             new_blog.save()
         return super().form_valid(form)
+
 
 class BlogUpdateView(UpdateView):
     model = Blog
@@ -53,6 +56,7 @@ class BlogUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('catalog:read_blog', args=[self.kwargs.get('pk')])
 
+
 class BlogDetailView(DetailView):
     model = Blog
 
@@ -62,9 +66,11 @@ class BlogDetailView(DetailView):
         self.object.save()
         return self.object
 
+
 class BlogDeleteView(DeleteView):
     model = Blog
     success_url = reverse_lazy('catalog:blogs')
+
 
 def toggle_public(request, pk):
     blog_item = get_object_or_404(Blog, pk=pk)
@@ -74,6 +80,7 @@ def toggle_public(request, pk):
         blog_item.is_published = True
     blog_item.save()
     return redirect(reverse('catalog:blogs'))
+
 
 class DraftBlogListView(ListView):
     model = Blog
