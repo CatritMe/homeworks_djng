@@ -32,6 +32,21 @@ class Product(models.Model):
         ordering = ('title',)
 
 
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт', null=True,
+                                related_name='versions')
+    number = models.CharField(max_length=10, verbose_name='номер версии')
+    title = models.CharField(max_length=100, verbose_name='название')
+    actual = models.BooleanField(default=False, verbose_name='признак текущей версии')
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
+
+
 class Buyer(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя')
     phone = models.CharField(max_length=12, verbose_name='Телефон')

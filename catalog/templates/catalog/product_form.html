@@ -1,0 +1,41 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Новости Skystore</h1>
+</div>
+
+
+    <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-5">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Добавить товар</h4>
+            </div>
+            <div class="card-body">
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-sm btn-outline-primary">Опубликовать</button>
+            </div>
+            </div>
+        </div>
+                <div class="col-5">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Добавить версию</h4>
+            </div>
+            <div class="card-body">
+                {{ formset.management_form }}
+                {% for form in formset %}
+                {{ form.as_p }}
+                {% endfor %}
+            </div>
+        </div>
+            </div>
+            </div>
+    </form>
+
+
+{% endblock %}
