@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Вход в кабинет Skystore</h1>
+</div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Вход</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Войти</button>
+                        <a href="{% url 'users:gen_password' %}" type="button" class="btn btn-sm btn-outline-primary">Забыли пароль?</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

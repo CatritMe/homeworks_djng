@@ -20,7 +20,7 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('user',)
 
     def clean_title(self):
         cleaned_data = self.cleaned_data.get('title')

@@ -1,0 +1,25 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-8">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Пользователь</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>{{object.email}}</li>
+                        <li>{{object.first_name}} {{object.last_name}}</li>
+                    </ul>
+                    <img class="img-fluid" src="{{ object.avatar| mymedia }}" alt="Responsive image">
+                    <a href="#" type="submit" class="btn btn-sm btn-outline-primary">Написать</a>
+                    <br>
+                    {{object.slug}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

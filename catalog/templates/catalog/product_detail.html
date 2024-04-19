@@ -13,9 +13,24 @@
                     <h1 class="card-title pricing-card-title">{{object.price}} руб.</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>{{object.description}}</li>
+                        <li>
+                            {% if object.versions.all %}
+                            {% for version in object.versions.all %}
+                            {% if version.actual %}
+                                <li>Версия {{ version.title }}</li>
+                                <li>Номер версии {{ version.number }}</li>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </li>
+                        <li>Владелец: <a class="nav-link active" aria-current="page" href="{% url 'users:user_detail' object.user.pk %}">{{object.user}}</a></li>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                    {% if user.is_authenticated %}
+                    {% if object.user.pk == user.pk %}
                     <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
+                    {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>
