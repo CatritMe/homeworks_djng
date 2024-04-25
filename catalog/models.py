@@ -4,6 +4,7 @@ from users.models import User
 
 
 class Category(models.Model):
+    '''Модель категорий товара'''
     title = models.CharField(max_length=100, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
 
@@ -17,6 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    '''Модель товара'''
     title = models.CharField(max_length=100, verbose_name='Наименование')
     description = models.TextField(verbose_name='Описание')
     avatar = models.ImageField(upload_to='products/', verbose_name='Изображение', null=True, blank=True)
@@ -42,6 +44,7 @@ class Product(models.Model):
 
 
 class Version(models.Model):
+    '''Модель версий товара'''
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт', null=True,
                                 related_name='versions')
     number = models.CharField(max_length=10, verbose_name='номер версии')
@@ -57,6 +60,7 @@ class Version(models.Model):
 
 
 class Buyer(models.Model):
+    '''Модель неавторизованного пользователя, задавшего вопрос в разделе "Контакты"'''
     name = models.CharField(max_length=100, verbose_name='Имя')
     phone = models.CharField(max_length=12, verbose_name='Телефон')
     message = models.TextField(verbose_name='Сообщение')
@@ -71,6 +75,7 @@ class Buyer(models.Model):
 
 
 class Blog(models.Model):
+    '''Модель блога в разделе новости'''
     title = models.CharField(max_length=100, verbose_name='Заголовок')
     slug = models.CharField(max_length=100, verbose_name='slug', null=True, blank=True)
     text = models.TextField(verbose_name='Содержимое')

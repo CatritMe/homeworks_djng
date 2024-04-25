@@ -14,15 +14,18 @@ CHARS = '+-*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890
 
 
 class UserDetailView(DetailView):
+    """Просмотр информации о конкретном пользователе"""
     model = User
 
 
 class UserCreateView(CreateView):
+    """Создание пользователя"""
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
+        """Отправка письма с ссылкой верификации и добавление токена пользователю"""
         user = form.save()
         user.is_active = False
         token = secrets.token_hex(16)
@@ -40,16 +43,19 @@ class UserCreateView(CreateView):
 
 
 class ProfileView(UpdateView):
+    """Редактирование профиля пользователя"""
     model = User
     form_class = UserProfileForm
     success_url = reverse_lazy('users:profile')
     template_name = 'users/profile.html'
 
     def get_object(self, queryset=None):
+        """Переход на редактирование того, под кем сессия"""
         return self.request.user
 
 
 def email_verification(request, token):
+    """Проверка верификации после регистрации"""
     user = get_object_or_404(User, token=token)
     user.is_active = True
     user.save()
@@ -57,6 +63,7 @@ def email_verification(request, token):
 
 
 def generate_new_password(request):
+    """Смена пароля при входе (отправка автоматически сгенерированного пароля на почту)"""
     new_password = ''
     for i in range(10):
         new_password += random.choice(CHARS)
