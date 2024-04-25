@@ -1,7 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-NULLABLE = {'blank':True, 'null':True}
+NULLABLE = {'blank': True, 'null': True}
+
+
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name='email')
@@ -9,7 +11,7 @@ class User(AbstractUser):
                              help_text='Введите номер телефона')
     avatar = models.ImageField(upload_to='users/avatars/', **NULLABLE, verbose_name='аватар',
                                help_text='Загрузите аватар')
-    country = models.CharField(max_length=50, verbose_name='страна',
+    country = models.CharField(max_length=50, verbose_name='страна', **NULLABLE,
                                help_text='Введите свою страну')
     token = models.CharField(max_length=100, verbose_name='токен', **NULLABLE)
     USERNAME_FIELD = "email"

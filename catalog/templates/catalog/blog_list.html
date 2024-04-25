@@ -6,8 +6,10 @@
     <h1 class="display-4">Новости Skystore</h1>
 </div>
 <div class="col-md-3">
-    <a href="{% url 'catalog:create_blog' %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Предложить новость</a>
+    {% if perms.catalog.add_blog %}
+    <a href="{% url 'catalog:create_blog' %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Создать новость</a>
     <a href="{% url 'catalog:drafts' %}" type="button" class="btn btn-lg btn-block btn-outline-secondary">Черновики</a>
+    {% endif %}
 </div>
 <br>
 <div class="container">

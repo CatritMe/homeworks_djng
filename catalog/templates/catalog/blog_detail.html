@@ -15,10 +15,12 @@
                     <img class="img-fluid" src="{{ object.avatar| mymedia }}" alt="Responsive image">
                     <br>
                     <div class="btn-group">
+                        {% if perms.catalog.change_blog and perms.catalog.delete_blog %}
                         <a href="{% url 'catalog:update_blog' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Изменить</a>
                         <a href="{% url 'catalog:delete_blog' object.pk %}" type="button" class="btn btn-sm btn-outline-danger">Удалить</a>
                         {% if not object.is_published %}
                             <a href="{% url 'catalog:toggle_public' object.pk %}" type="submit" class="btn btn-sm btn-outline-primary">Опубликовать</a>
+                        {% endif %}
                         {% endif %}
                     </div>
                     <br>

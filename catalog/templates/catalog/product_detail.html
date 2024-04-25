@@ -26,10 +26,8 @@
                         <li>Владелец: <a class="nav-link active" aria-current="page" href="{% url 'users:user_detail' object.user.pk %}">{{object.user}}</a></li>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
-                    {% if user.is_authenticated %}
-                    {% if object.user.pk == user.pk %}
+                    {% if object.user.pk == user.pk or perms.catalog.can_cancel_publication or perms.catalog.can_change_description or perms.catalog.can_change_category %}
                     <a href="{% url 'catalog:update_product' object.pk %}" type="button" class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
-                    {% endif %}
                     {% endif %}
                 </div>
             </div>
