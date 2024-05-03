@@ -7,7 +7,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
-from catalog.models import Product, Buyer, Blog, Version
+from catalog.models import Product, Buyer, Blog, Version, Category
+from catalog.services import get_categories_from_cache
 
 
 class ContactCreateView(CreateView):
@@ -16,6 +17,14 @@ class ContactCreateView(CreateView):
     model = Buyer
     fields = ('name', 'phone', 'message',)
     success_url = reverse_lazy('catalog:home')
+
+
+class CategoryListView(ListView):
+    """Ппросмотр списка категорий товаров"""
+    model = Category
+
+    def get_queryset(self):
+        return get_categories_from_cache()
 
 
 class ProductListView(ListView):
